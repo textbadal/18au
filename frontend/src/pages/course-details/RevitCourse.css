@@ -1,0 +1,55 @@
+/* Revit Course Page */
+.course-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .course-detail-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .course-info {
+    text-align: left;
+  }
+  
+  .course-info h2, .course-info h3 {
+    color: #2c3e50;
+  }
+  
+  .course-info ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9em;
+  }
+  
+  .new-price {
+    color: #2ecc71;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .enroll-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+  }
+  
+  .enroll-button:hover {
+    background-color: #2980b9;
+  }

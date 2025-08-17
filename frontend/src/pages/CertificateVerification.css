@@ -1,0 +1,326 @@
+/* CertificateVerification.css */
+
+/* Base Styles */
+.certificate-verification-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+/* Verification Card */
+.verification-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.heading {
+  color: #1a365d;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.description {
+  color: #4a5568;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Input Group */
+.input-group {
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.certificate-input {
+  width: 100%;
+  padding: 1.1rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.certificate-input:focus {
+  border-color: #4299e1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.certificate-input::placeholder {
+  color: #a0aec0;
+}
+
+/* Button Styles */
+.verify-btn {
+  width: 100%;
+  padding: 1.1rem;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.verify-btn:hover:not(:disabled) {
+  background-color: #2b6cb0;
+  transform: translateY(-1px);
+}
+
+.verify-btn:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.verify-btn .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.error-message {
+  color: #e53e3e;
+  background-color: #fff5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Features Section */
+.certificate-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.feature {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  color: #2d3748;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+}
+
+.feature p {
+  color: #718096;
+  margin: 0;
+}
+
+/* Circular Images Section */
+.circular-images-section {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.circular-images-section h2 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.circular-images-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #3182ce;
+  border-radius: 2px;
+}
+
+.circular-images-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.circular-image {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  background: white;
+  padding: 0.5rem;
+}
+
+.circular-image:hover {
+  transform: scale(1.1);
+  border-color: #3182ce;
+}
+
+.circular-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin: 5rem 0;
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.faq-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #3182ce;
+  border-radius: 2px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.faq-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-card h3 {
+  color: #3182ce;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.faq-card p {
+  color: #4a5568;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .verification-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .heading {
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+  }
+  
+  .certificate-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .circular-image {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 480px) {
+  .verification-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .heading {
+    font-size: 1.8rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .circular-images-container {
+    gap: 1.5rem;
+  }
+  
+  .circular-image {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
