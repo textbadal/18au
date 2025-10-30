@@ -1,68 +1,73 @@
-const express = require('express');
-const Certificate = require('../models/Certificate');
+const express = require("express");
+const Certificate = require("../models/Certificate");
 const router = express.Router();
 
-// Route to verify multiple certificates
-router.post('/verify', async (req, res) => {
+// ✅ Verify multiple certificates
+router.post("/verify", async (req, res) => {
   try {
-    const { certificateIDs } = req.body; // array of certificate IDs to verify
+    const { certificateIDs } = req.body;
 
-    if (!Array.isArray(certificateIDs)) {
-      return res.status(400).json({ message: 'certificateIDs should be an array' });
+    // Validate input
+    if (!certificateIDs || !Array.isArray(certificateIDs)) {
+      return res.status(400).json({ message: "certificateIDs must be an array" });
     }
 
-    // Fetch all certificates by certificate IDs
+    // Trim IDs to avoid extra spaces
+    const trimmedIDs = certificateIDs.map((id) => id.trim());
+
+    // Find matching certificates
     const certificates = await Certificate.find({
-      certificateID: { $in: certificateIDs }
+      certificateID: { $in: trimmedIDs },
     });
 
-    if (certificates.length === 0) {
-      return res.status(404).json({ message: 'No certificates found for the provided IDs' });
+    if (!certificates || certificates.length === 0) {
+      return res.status(404).json({ message: "No certificates found for the provided IDs" });
     }
 
-    // Respond with the certificate details
-    res.json(certificates);
+    // ✅ Send back full certificate data
+    return res.status(200).json(certificates);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error while verifying certificates' });
+    console.error("Error verifying certificates:", err);
+    return res.status(500).json({ message: "Server error while verifying certificates" });
   }
 });
 
-// Route to add many certificates
-router.post('/addMany', async (req, res) => {
+// ✅ Add multiple certificates at once
+router.post("/addMany", async (req, res) => {
   try {
-    const certificates = req.body.certificates; // Array of certificates to add
+    const { certificates } = req.body;
 
-    // Validate if the certificates array exists and is an array
-    if (!Array.isArray(certificates)) {
-      return res.status(400).json({ message: 'certificates must be an array' });
+    // Validate input
+    if (!Array.isArray(certificates) || certificates.length === 0) {
+      return res.status(400).json({ message: "certificates must be a non-empty array" });
     }
 
-    // Validate that each certificate contains the required fields
+    // Check each certificate for required fields
     for (let certificate of certificates) {
       const { certificateID, studentName, courseName } = certificate;
       if (!certificateID || !studentName || !courseName) {
-        return res.status(400).json({ message: 'Each certificate must include certificateID, studentName, and courseName' });
+        return res.status(400).json({
+          message: "Each certificate must include certificateID, studentName, and courseName",
+        });
       }
 
-      // Check if the certificateID already exists
-      const existingCertificate = await Certificate.findOne({ certificateID });
-      if (existingCertificate) {
-        return res.status(400).json({ message: `Certificate with ID ${certificateID} already exists` });
+      // Avoid duplicates
+      const exists = await Certificate.findOne({ certificateID });
+      if (exists) {
+        return res.status(400).json({ message: `Certificate ID ${certificateID} already exists` });
       }
     }
 
-    // Insert many certificates at once
-    const insertedCertificates = await Certificate.insertMany(certificates);
+    // Insert many certificates
+    const inserted = await Certificate.insertMany(certificates);
 
-    // Respond with a success message and the inserted certificates
-    res.status(201).json({
-      message: 'Certificates added successfully',
-      certificates: insertedCertificates
+    return res.status(201).json({
+      message: "Certificates added successfully",
+      certificates: inserted,
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error adding certificates', error: err.message });
+    console.error("Error adding certificates:", err);
+    return res.status(500).json({ message: "Error adding certificates", error: err.message });
   }
 });
 

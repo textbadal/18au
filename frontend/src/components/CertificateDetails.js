@@ -6,24 +6,12 @@ import "./CertificateDetails.css";
 // Reusable component for displaying each certificate
 const CertificateCard = ({ certificate }) => (
   <div className="certificate-card">
-    <p>
-      <strong>Certificate ID:</strong> {certificate.certificateID}
-    </p>
-    <p>
-      <strong>Student Name:</strong> {certificate.studentName}
-    </p>
-    <p>
-      <strong>Registration No:</strong> {certificate.regNo}
-    </p>
-    <p>
-      <strong>College:</strong> {certificate.college}
-    </p>
-    <p>
-      <strong>Course Name:</strong> {certificate.courseName}
-    </p>
-    <p>
-      <strong>Marks Obtained:</strong> {certificate.marks}
-    </p>
+    <p><strong>Certificate ID:</strong> {certificate.certificateID}</p>
+    <p><strong>Student Name:</strong> {certificate.studentName}</p>
+    <p><strong>Registration No:</strong> {certificate.regNo}</p>
+    <p><strong>College:</strong> {certificate.college}</p>
+    <p><strong>Course Name:</strong> {certificate.courseName}</p>
+    <p><strong>Marks Obtained:</strong> {certificate.marks}</p>
     <p>
       <strong>Issued:</strong>{" "}
       {new Date(certificate.issueDate).toLocaleDateString("en-GB", {
@@ -66,6 +54,12 @@ const CertificateDetails = () => {
   const query = new URLSearchParams(location.search);
   const idsQuery = query.get("ids");
 
+  // Automatically detect backend URL (local or deployed)
+  const backendURL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000" // 👈 change if your backend uses a different local port
+      : "https://backend-51k4.onrender.com";
+
   useEffect(() => {
     const fetchCertificates = async () => {
       if (!idsQuery) {
@@ -75,10 +69,15 @@ const CertificateDetails = () => {
       }
 
       try {
-        const idsArray = idsQuery.split(",");
+        const idsArray = idsQuery.split(",").map(id => id.trim());
         const response = await axios.post(
-          "https://backend-51k4.onrender.com/api/certificates/verify",
-          { certificateIDs: idsArray }
+          `${backendURL}/api/certificates/verify`,
+          { certificateIDs: idsArray },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
 
         if (Array.isArray(response.data) && response.data.length > 0) {
@@ -87,15 +86,21 @@ const CertificateDetails = () => {
           setError("No certificates found for the provided IDs.");
         }
       } catch (err) {
-        setError("Error fetching certificate data. Please try again.");
-        console.error(err);
+        console.error("❌ Verification error:", err);
+        if (err.response) {
+          setError(`Server Error: ${err.response.data.message}`);
+        } else if (err.request) {
+          setError("Network Error: Could not reach backend server.");
+        } else {
+          setError("Unexpected Error occurred.");
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchCertificates();
-  }, [idsQuery]);
+  }, [idsQuery, backendURL]);
 
   return (
     <div className="certificate-details-container">
@@ -111,10 +116,7 @@ const CertificateDetails = () => {
         ))
       )}
 
-      <button
-        className="back-btn"
-        onClick={() => navigate("/certificate-verification")}
-      >
+      <button className="back-btn" onClick={() => navigate("/certificate-verification")}>
         Go Back
       </button>
 
