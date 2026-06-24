@@ -10,7 +10,7 @@ const CertificateCard = ({ certificate }) => (
     <p><strong>Student Name:</strong> {certificate.studentName}</p>
     <p><strong>Registration No:</strong> {certificate.regNo}</p>
     <p><strong>College:</strong> {certificate.college}</p>
-    <p><strong>Course Name:</strong> {certificate.courseName}</p>
+    <p><strong>Domain:</strong> {certificate.courseName}</p>
     <p><strong>Marks Obtained:</strong> {certificate.marks}</p>
     <p>
       <strong>Issued:</strong>{" "}
