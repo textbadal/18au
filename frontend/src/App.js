@@ -22,7 +22,7 @@ function App() {
       title: 'Internship',
       path: '/internship',
     
-      subLinks: [
+     /* subLinks: [
         { title: 'BE/BTech/MTech', path: '/internship/BE/BTech/MTech' },
         { title: 'BCA/MCA', path: '/internship/BCA/MCA' },
         { title: 'BBA/MBA', path: '/internship/BBA/MBA' },
@@ -37,33 +37,33 @@ function App() {
         { title: 'Psychology', path: '/internship/Psychology' },
         { title: 'Agriculture', path: '/internship/Agriculture' },
         { title: 'See More', path: '/internship' },
-      ],
+      ], */
     },
     {
       title: 'Services',
       path: '/services',
-      subLinks: [
+      /* subLinks: [
         { title: 'Web Development', path: '/services/web-development' },
         { title: 'App Development', path: '/services/app-development' },
         { title: 'Digital Marketing', path: '/services/digital-marketing' },
-      ],
+      ], */
     },
     {
       title: 'Jobs',
       path: '/jobs',
-      subLinks: [
+      /* subLinks: [
         { title: 'Developer Jobs', path: '/jobs/Developer Jobs' },
         { title: 'Architectural Jobs', path: '/jobs/Architectural Jobs' },
         { title: 'Marketing Jobs', path: '/jobs/Marketing Jobs' },
         { title: 'HR Jobs', path: '/jobs/HR Jobs' },
         { title: 'Content Writing Jobs', path: '/jobs/Content Writing Jobs' },
         { title: 'Graphic Design Jobs', path: '/jobs/Graphic Design Jobs' },
-      ],
+      ], */
     },
     {
       "title": "Courses",
-    
-      "subLinks": [
+    path: '/courses',
+     /* "subLinks": [
         { "title": "Certification Courses", "path": "/courses" },
         { "title": "Web Development", "path": "/courses/WebDevelopment" },
         { "title": "Programming with Python", "path": "/courses/PythonProgramming" },
@@ -83,7 +83,7 @@ function App() {
         { "title": "Financial Modelling Course", "path": "/courses/FinancialModelling" },
         { "title": "Supply Chain Logistics Course", "path": "/courses/SupplyChainLogistics" },
         { "title": "View More", "path": "/courses" }
-      ]
+      ] */
     
     },
     {

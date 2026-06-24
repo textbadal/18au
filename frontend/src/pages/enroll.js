@@ -9,7 +9,7 @@ const Enroll = () => {
     
     {
       id: 1,
-      title: 'BE/BTech/MTech Internship Program',
+      title: 'BE/BTech/Diploma/MTech Internship Program',
       description: 'Gain hands-on experience in software development, AI, and IoT projects.',
       available: 15,
       enrollLink: 'https://forms.gle/6nJ3ZRq2EHZ6Gdqv8',
